@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background: url(bg.jpg) center;
+            background-size: cover;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+.slider-container {
+  position: relative;
+  max-width: 400px;
+  margin: 0 auto;  
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+  background: linear-gradient(to top , rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+  box-shadow: 0 20px 100px rgba(0, 0, 0, 0.766);
+  background-size: cover;
+  border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.109);
+}
+
+.slides {
+  display: flex;  
+}
+
+.slides .item {  
+  margin: 50px auto;
+}
+.slides .item img {    
+  width: 300px;
+  max-width: 300px;
+  height: 260px; 
+  object-fit: cover;
+}
+h1{
+    margin-top: 50px;
+    color: antiquewhite;
+    border-bottom: 1px rgba(250, 250, 250, 0.2) solid;
+}
+.slides .item h2{
+    text-align: center;
+    color: white;    
+}
+.slides .item img{
+    transition: all 0.7s; 
+}
+.slides:hover>.item>img{
+    transform: scale(1.3) translateY(-20%);
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.502);
+  padding:15px 20px;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+}
+
+.prev {  left: 0; }
+.prev:hover {  background-color: blanchedalmond; }
+.next {  right: 0; }
+.next:hover {  background-color: blanchedalmond; }
+
+.text-center{
+    text-align: center;
+}
+.precio{
+    font-size: 30px;
+    color: blanchedalmond;
+}
+.boton{
+    border: 1px solid white;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 25px;
+}
+.boton:hover{
+    background-color: blanchedalmond;
+    color: brown;
+}
+
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <h1 class="text-center">TORTAS</h1>
+        <div class="slides"></div>
+        <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+        <button class="next" onclick="plusSlides(1)">&#10095;</button>
+    </div>
+<script>
+const tortas = {
+    torta1 :{
+        image:'1.png',
+        name:"Torta de chocolote",
+        price: 10.00,
+    },
+    torta2 :{
+        image:'2.png',
+        name:"Torta de Lúcuma",
+        price: 19.00,
+    },
+    torta3 :{
+        image:'3.png',
+        name:"Torta de Membrillo",
+        price: 12.00,
+    },
+    torta4 :{
+        image:'4.png',
+        name:"Torta de Maiz",
+        price: 14.00,
+    }
+}
+
+var html = ''
+for (var key in tortas) {
+    html += '<div class="item text-center">'
+    html += '<img src="'+tortas[key].image+'">'
+    html += '<h2>'+tortas[key].name+'</h2>'
+    html += '<p class="precio">S/.'+tortas[key].price.toFixed(2)+'</p>'
+    html += '<a href="#" class="boton">Comprar</a>'
+    html += '</div>'    
+}
+
+document.querySelector(".slides").innerHTML=html
+
+let slideIndex = 0;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+    showSlides(slideIndex += n);
+}
+
+function showSlides(n) {
+    const slides = document.querySelectorAll('.slides .item');
+    if (n >= slides.length) {slideIndex = 0}
+    if (n < 0) {slideIndex = slides.length - 1}
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slides[slideIndex].style.display = "block";
+}
+</script>
+</body>
+</html>
